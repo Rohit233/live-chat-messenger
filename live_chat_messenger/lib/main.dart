@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.blue[800],
+        scaffoldBackgroundColor: Colors.blue[800],
       ),
       home: FutureBuilder(
         future: AuthMethods().getCurrentUser(),

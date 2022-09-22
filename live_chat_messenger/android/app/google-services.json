@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "984490664555-0r3cat9fcr2fmufa6scj1ifpfmjllej3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.live_chat_messenger",
+            "certificate_hash": "0a01f8f50df2575e55debf61f2db23d92fa257e4"
+          }
+        },
+        {
           "client_id": "984490664555-73h905femdko5jpcadfijp0ttj8svg80.apps.googleusercontent.com",
           "client_type": 3
         }

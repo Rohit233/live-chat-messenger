@@ -23,11 +23,22 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  
   flutter_lints: ^2.0.1
+  
+  flutter_launcher_icons: 
 
+flutter_icons:
+  android: true
+  image_path: "assets/App Icon.png"
+  adaptive_icon_foreground: "assets/logo_foreground.png"
+  adaptive_icon_background: "#ffffff"
+  
 flutter:
   uses-material-design: true
+  assets: 
+    - assets/google-logo.png
+    - assets/App Icon.png
 
   
   
