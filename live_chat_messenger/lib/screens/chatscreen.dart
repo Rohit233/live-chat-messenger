@@ -62,7 +62,7 @@ class _ChatScreenState extends State<ChatScreen> {
           "lastMessageSentBy": myUserName
         };
         DatabaseMethods()
-            .updateLastMessageSend(chatRoomId!, lastMessageInfoMap);
+            .updateLastMessageSent(chatRoomId!, lastMessageInfoMap);
 
         if (sendClicked) {
           // remove the text in the message input field
@@ -81,7 +81,7 @@ class _ChatScreenState extends State<ChatScreen> {
           sendByMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         Container(
-            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(24),
@@ -90,7 +90,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 bottomRight:
                     sendByMe ? Radius.circular(0) : Radius.circular(24),
               ),
-              color: Colors.blue,
+              color: Colors.blue[800],
             ),
             padding: EdgeInsets.all(16),
             child: Text(
@@ -141,16 +141,28 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.name),
+        backgroundColor: Colors.blue[800],
+        bottomOpacity: 0.0,
+        elevation: 0.0,
       ),
       body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topRight,
+                colors: [Color.fromARGB(255, 211, 211, 211), Colors.white])),
         child: Stack(
           children: [
             chatMessages(),
             Container(
               alignment: Alignment.bottomCenter,
               child: Container(
-                color: Colors.black.withOpacity(0.8),
+                margin: EdgeInsets.all(10),
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.8),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Row(
                   children: [
                     Expanded(
@@ -159,20 +171,27 @@ class _ChatScreenState extends State<ChatScreen> {
                       onChanged: (value) {
                         addMessage(false);
                       },
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "type a message",
+                          hintText: "type something...",
                           hintStyle:
-                              TextStyle(color: Colors.white.withOpacity(0.6))),
+                              TextStyle(color: Colors.black.withOpacity(0.6))),
                     )),
                     GestureDetector(
                       onTap: () {
                         addMessage(true);
                       },
-                      child: Icon(
-                        Icons.send,
-                        color: Colors.white,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 10, color: Colors.blue.shade800),
+                            color: Colors.blue[800],
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.white,
+                        ),
                       ),
                     )
                   ],

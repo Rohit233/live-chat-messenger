@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:live_chat_messenger/helperfunctions/sharedpref_helper.dart';
 import 'package:live_chat_messenger/services/database.dart';
-import 'package:live_chat_messenger/views/home.dart';
+import 'package:live_chat_messenger/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,11 +14,11 @@ class AuthMethods {
   }
 
   signInWithGoogle(BuildContext context) async {
-    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
+    final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    final GoogleSignIn googleSignIn = GoogleSignIn();
 
     final GoogleSignInAccount? googleSignInAccount =
-        await _googleSignIn.signIn();
+        await googleSignIn.signIn();
 
     final GoogleSignInAuthentication? googleSignInAuthentication =
         await googleSignInAccount?.authentication;
@@ -27,8 +27,7 @@ class AuthMethods {
         idToken: googleSignInAuthentication?.idToken,
         accessToken: googleSignInAuthentication?.accessToken);
 
-    UserCredential result =
-        await _firebaseAuth.signInWithCredential(credential);
+    UserCredential result = await firebaseAuth.signInWithCredential(credential);
     User? userDetails = result.user;
 
     if (result != null) {

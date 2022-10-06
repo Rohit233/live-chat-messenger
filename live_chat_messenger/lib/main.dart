@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:live_chat_messenger/services/auth.dart';
-import 'package:live_chat_messenger/views/home.dart';
-import 'package:live_chat_messenger/views/signin.dart';
+import 'package:live_chat_messenger/screens/home.dart';
+import 'package:live_chat_messenger/screens/signin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

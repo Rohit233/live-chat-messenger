@@ -17,6 +17,7 @@ dependencies:
   shared_preferences:
   random_string:
   cloud_firestore: ^3.4.3
+  google_fonts: 
  
   cupertino_icons: ^1.0.2
 
@@ -39,6 +40,7 @@ flutter:
   assets: 
     - assets/google-logo.png
     - assets/App Icon.png
+    - assets/AppIconTransparent.png
 
   
   

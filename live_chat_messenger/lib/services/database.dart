@@ -27,7 +27,7 @@ class DatabaseMethods {
         .set(messageInfoMap);
   }
 
-  updateLastMessageSend(
+  updateLastMessageSent(
       String chatRoomId, Map<String, dynamic> lastMessageInfoMap) {
     return FirebaseFirestore.instance
         .collection("chatrooms")

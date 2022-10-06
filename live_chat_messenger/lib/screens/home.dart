@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:live_chat_messenger/helperfunctions/sharedpref_helper.dart';
 import 'package:live_chat_messenger/services/auth.dart';
 import 'package:live_chat_messenger/services/database.dart';
-import 'package:live_chat_messenger/views/chatscreen.dart';
-import 'package:live_chat_messenger/views/signin.dart';
+import 'package:live_chat_messenger/screens/chatscreen.dart';
+import 'package:live_chat_messenger/screens/signin.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
             SizedBox(width: 12),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text(name), Text(lastMessage.toString())])
+                children: [Text(name), Text(email)])
           ],
         ),
       ),
@@ -115,7 +115,7 @@ class _HomeState extends State<Home> {
                 },
               )
             : Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(),
               );
       },
     );
@@ -142,6 +142,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Live Chat"),
+        toolbarHeight: 100,
+        backgroundColor: Colors.transparent,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
         actions: [
           InkWell(
             onTap: () {
@@ -157,58 +161,65 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  isSearching
-                      ? GestureDetector(
-                          onTap: () {
-                            isSearching = false;
-                            searchUsernameEditingController.text = "";
-                            setState(() {});
-                          },
-                          child: Padding(
-                              padding: EdgeInsets.only(right: 12),
-                              child: Icon(Icons.arrow_back)),
-                        )
-                      : Container(),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.symmetric(vertical: 16),
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.grey,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          borderRadius: BorderRadius.circular(24)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child: TextField(
-                            controller: searchUsernameEditingController,
-                            decoration: InputDecoration(
-                                border: InputBorder.none, hintText: "username"),
-                          )),
-                          GestureDetector(
-                              onTap: () {
-                                if (searchUsernameEditingController.text !=
-                                    "") {
-                                  onSearchBtnClick();
-                                }
-                              },
-                              child: Icon(Icons.search))
-                        ],
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(
+                top: Radius.circular(50), bottom: Radius.circular(0))),
+        child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    isSearching
+                        ? GestureDetector(
+                            onTap: () {
+                              isSearching = false;
+                              searchUsernameEditingController.text = "";
+                              setState(() {});
+                            },
+                            child: Padding(
+                                padding: EdgeInsets.only(right: 12),
+                                child: Icon(Icons.arrow_back)),
+                          )
+                        : Container(),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: 16),
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.grey,
+                                width: 1,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(24)),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                child: TextField(
+                              controller: searchUsernameEditingController,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "username"),
+                            )),
+                            GestureDetector(
+                                onTap: () {
+                                  if (searchUsernameEditingController.text !=
+                                      "") {
+                                    onSearchBtnClick();
+                                  }
+                                },
+                                child: Icon(Icons.search))
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              isSearching ? searchUsersList() : chatRoomList()
-            ],
-          )),
+                  ],
+                ),
+                isSearching ? searchUsersList() : chatRoomList()
+              ],
+            )),
+      ),
     );
   }
 }
