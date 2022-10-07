@@ -81,8 +81,11 @@ class _HomeState extends State<Home> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(40),
-              child: Image.network(
-                profileUrl.toString(),
+              child: profileUrl == null ? Image.asset('assets/userProfile.png',
+                  height: 30,
+                  width: 30,
+              ) : Image.network(
+                profileUrl,
                 height: 30,
                 width: 30,
               ),

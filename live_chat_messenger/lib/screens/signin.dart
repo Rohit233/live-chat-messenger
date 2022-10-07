@@ -1,3 +1,4 @@
+import 'package:live_chat_messenger/screens/signup_email.dart';
 import 'package:live_chat_messenger/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -60,9 +61,27 @@ class _SignInState extends State<SignIn> {
                                   borderRadius: BorderRadius.circular(12)),
                               child: Center(
                                   child: Text(
-                                'Sign In',
+                                'Sign In with google',
                                 style: TextStyle(fontSize: 20),
                               ))))),
+                  Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return SignUpEmail();
+                            }));
+                          },
+                          child: Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Center(
+                                  child: Text(
+                                'Sign Up with email',
+                                style: TextStyle(fontSize: 20),
+                              ))))),            
                 ])),
       ),
     );
