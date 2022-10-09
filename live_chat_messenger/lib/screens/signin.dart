@@ -1,3 +1,4 @@
+import 'package:live_chat_messenger/screens/signin_email.dart';
 import 'package:live_chat_messenger/screens/signup_email.dart';
 import 'package:live_chat_messenger/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class _SignInState extends State<SignIn> {
                       child: GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context){
-                                return SignUpEmail();
+                                return SignInEmail();
                             }));
                           },
                           child: Container(
@@ -79,7 +80,7 @@ class _SignInState extends State<SignIn> {
                                   borderRadius: BorderRadius.circular(12)),
                               child: Center(
                                   child: Text(
-                                'Sign Up with email',
+                                'Sign In with email',
                                 style: TextStyle(fontSize: 20),
                               ))))),            
                 ])),

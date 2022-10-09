@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:live_chat_messenger/helperfunctions/basic_helper.dart';
+import 'package:live_chat_messenger/screens/signin.dart';
 import 'package:live_chat_messenger/screens/signin_email.dart';
 import 'package:live_chat_messenger/services/auth.dart';
 
@@ -28,6 +29,17 @@ class _SignUpEmailState extends State<SignUpEmail> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignIn()),
+                          (route) => false);
+                    },
+                    icon: Icon(Icons.arrow_back_ios_new_rounded)),
+              ),
               Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: Form(
@@ -78,22 +90,25 @@ class _SignUpEmailState extends State<SignUpEmail> {
                     )),
               ),
               ElevatedButton(
-                  onPressed: isLoading ? null : () async{
-                    setState(() {
-                       isLoading = true;
-                    });
-                    await AuthMethods()
-                        .signUpWithEmail(context, _formKey, _signUpFields);
-                    setState(() {
-                        isLoading = false;
-                    });    
-                  },
+                  onPressed: isLoading
+                      ? null
+                      : () async {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          await AuthMethods().signUpWithEmail(
+                              context, _formKey, _signUpFields);
+                          setState(() {
+                            isLoading = false;
+                          });
+                        },
                   child: Text('Sign up')),
               TextButton(
                   onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return SignInEmail();
-                     }));
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignInEmail()),
+                        (route) => false);
                   },
                   child: Text(
                     'Already have an account',
